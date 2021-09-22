@@ -1,5 +1,9 @@
 RSpec.describe 'POST api/analyses' do
 
+  before  do
+    stub_request(:any, 'https://safe-for-work-api.herokuapp.com')
+  end
+
   subject { response }
 
   describe 'when safe for work text is called on the API' do
