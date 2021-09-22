@@ -1,8 +1,11 @@
-RSpec.describe 'POST api/analyses' do
+require 'rails_helper'
 
-  before  do
-    stub_request(:any, 'https://safe-for-work-api.herokuapp.com')
+RSpec.describe 'POST api/analyses', type: :request do
+  before do
+    stub_request(:any, 'https://safe-for-work-api.herokuapp.com').to_return(body: './config/happy_text_response.json')
+    binding.pry
   end
+
 
   subject { response }
 
@@ -15,6 +18,4 @@ RSpec.describe 'POST api/analyses' do
       expect(eval(response_json['results']['classification'])[0]['tag_name']).to eq 'clean'
     end
   end
-  
 end
-
