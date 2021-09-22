@@ -13,6 +13,7 @@ gem 'rest-client'
 gem 'monkeylearn'
 
 group :development, :test do
+  gem 'rspec-rails'
   gem 'pry-byebug'
 end
 
