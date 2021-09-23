@@ -23,6 +23,7 @@ class Api::AnalysesController < ApplicationController
   def analyze_resource
     resource = analysis_params[:resource]
     if analysis_category == :image
+      binding.pry
       @results = image_analysis(resource)
     elsif analysis_category == :text
       @results = text_analysis(resource)
