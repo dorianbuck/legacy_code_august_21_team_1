@@ -39,4 +39,4 @@ blocks:
           commands:
             - ./cc-test-reporter after-build --exit-code 1
       secrets:
-        - name: master.key
+        - name: legacy challenge key
