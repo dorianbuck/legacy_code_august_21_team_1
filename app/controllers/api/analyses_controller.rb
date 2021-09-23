@@ -32,7 +32,7 @@ class Api::AnalysesController < ApplicationController
   def text_analysis(text)
     model_id = 'cl_KFXhoTdt' # Profanity & Abuse Detection
     response = Monkeylearn.classifiers.classify(model_id, [text])
-    response.body[0]
+    response.body.is_a?(Array) ? response.body[0] : response.body
   end
 
   def image_analysis(url)
