@@ -23,3 +23,6 @@ Gemfile.lock
 
 .env
 /config/master.key
+
+/coverage
+
