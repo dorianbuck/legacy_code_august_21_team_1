@@ -22,6 +22,5 @@ blocks:
             - chmod +x ./cc-test-reporter
             - ./cc-test-reporter before-build
             - bundle install
-            - bundle update --bundler
             - 'bundle exec rails db:create db:migrate'
             - bundle exec rspec
