@@ -14,6 +14,7 @@ gem 'rest-client'
 gem 'solargraph'
 
 group :development, :test do
+  gem 'simplecov', require: false, group: :test
   gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'webmock'

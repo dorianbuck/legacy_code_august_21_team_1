@@ -1,32 +1,31 @@
-require 'rails_helper'
-
-RSpec.describe 'POST https://safe-for-work-api.herokuapp.com/api/analyses', type: :request do
-  before do
-    stub_request(:post, 'https://safe-for-work-api.herokuapp.com/api/analyses')
-      .with(body: { 'category' => 'text' },
-            headers: {
-              'Accept' => '*/*',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Host' => 'safe-for-work-api.herokuapp.com',
-              'User-Agent' => 'Ruby'
-            })
-      .to_return(status: 200, body: File.new('./spec/fixtures/happy_test_response.json'), headers: {})
+RSpec.describe 'POST api/analyses', type: :request do
+  let(:outcome) do
+   JSON.parse(file_fixture('happy_test_response.json').read)
+  end
+  let(:params) do
+    { analysis: { resource: 'How is the weather today?',
+                  category: 'text' } }
   end
 
-  subject { response }
-let(:response) {}
+  # subject { response }
   describe 'when safe for work text is called on the API' do
     before do
-      url = URI('https://safe-for-work-api.herokuapp.com/api/analyses')
-      params = URI.encode_www_form({ "category": 'text' })
-      # url.query = URI.encode_www_form(params)
-      response = Net::HTTP.post(url, params)
-      # binding.pry
+      stub_request(:post, 'https://api.monkeylearn.com/v3/classifiers/cl_KFXhoTdt/classify/')
+        .with(
+          body: '{"data":["How is the weather today?"]}'
+        )
+        .to_return(status: 200, body: outcome, headers: {})
+
+      post '/api/analyses', params: params
+    end
+
+    it 'is expected to respond with a 200 message' do
+      expect(@response).to have_http_status 200
     end
 
     it 'is expected to return a clean response' do
-      binding.pry
-      expect(eval(response)['results']['classification'][0]['tag_name']).to eq 'clean'
+      response = JSON.parse(@response.body)
+      expect(eval(response['results']['classifications'])[0]['tag_name']).to eq 'clean'
     end
   end
 end
