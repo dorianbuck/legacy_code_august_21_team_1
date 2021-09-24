@@ -1,13 +1,12 @@
 RSpec.describe 'POST api/analyses', type: :request do
   let(:outcome) do
-   JSON.parse(file_fixture('happy_test_response.json').read)
+   JSON.parse(file_fixture('happy_test_text_response.json').read)
   end
   let(:params) do
     { analysis: { resource: 'How is the weather today?',
                   category: 'text' } }
   end
 
-  # subject { response }
   describe 'when safe for work text is called on the API' do
     before do
       stub_request(:post, 'https://api.monkeylearn.com/v3/classifiers/cl_KFXhoTdt/classify/')

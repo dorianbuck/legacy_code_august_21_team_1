@@ -13,7 +13,11 @@ blocks:
         - name: RAILS_ENV
           value: test
         - name: CC_TEST_REPORTER_ID
+
+          
+
           value: 95e9d542f359566e9b168f4704f457f6fcb6e6378371f1305b56b003ddfa854c
+
       jobs:
         - name: Test
           commands:
@@ -25,7 +29,10 @@ blocks:
             - ./cc-test-reporter before-build
             - 'gem install bundler:2.2.27'
             - bundle update --bundler
-            - 'bundle install '
+
+           
+
+
             - 'bundle exec rails db:create db:migrate'
             - bundle exec rspec
       epilogue:

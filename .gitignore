@@ -15,7 +15,6 @@
 
 .byebug_history
 
-
 .idea
 .idea/
 .idea/*
@@ -23,3 +22,6 @@
 /coverage
 .env
 /config/master.key
+
+/coverage
+
