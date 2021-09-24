@@ -19,7 +19,7 @@
 .idea/
 .idea/*
 
-
+/coverage
 .env
 /config/master.key
 

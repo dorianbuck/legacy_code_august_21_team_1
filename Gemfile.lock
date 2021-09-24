@@ -261,8 +261,10 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
-  -darwin-20
-  x86_64-darwin-18
+
+  
+
+
   x86_64-darwin-20
 
 DEPENDENCIES
