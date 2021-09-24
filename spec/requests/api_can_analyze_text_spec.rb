@@ -1,6 +1,6 @@
 RSpec.describe 'POST api/analyses', type: :request do
   let(:outcome) do
-   JSON.parse(file_fixture('happy_test_text_response.json').read)
+    JSON.parse(file_fixture('happy_test_text_response.json').read)
   end
   let(:params) do
     { analysis: { resource: 'How is the weather today?',
@@ -23,7 +23,7 @@ RSpec.describe 'POST api/analyses', type: :request do
     end
 
     it 'is expected to return a clean response' do
-      response = JSON.parse(@response.body)
+      response = response_json
       expect(eval(response['results']['classifications'])[0]['tag_name']).to eq 'clean'
     end
   end

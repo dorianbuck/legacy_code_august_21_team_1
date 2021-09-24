@@ -23,7 +23,7 @@ RSpec.describe 'POST api/analyses', type: :request do
     end
 
     it 'it is expected to respond with a safe score' do
-      expect(JSON.parse(response.body)['results']['safe'].to_f).to eq 0.999055
+      expect(response_json['results']['safe'].to_f).to eq 0.999055
     end
   end
 end
