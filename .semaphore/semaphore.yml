@@ -40,3 +40,4 @@ blocks:
             - ./cc-test-reporter after-build --exit-code 1
       secrets:
         - name: legacy-challenge-key
+        - name: legacy_challenge_secret
