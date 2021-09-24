@@ -11,15 +11,8 @@ RSpec.describe 'POST api/analyses', type: :request do
     before do
       stub_request(:post, 'https://api.clarifai.com/v2/models/d16f390eb32cad478c7ae150069bd2c6/outputs')
         .with(
-          body: '{"inputs":[{"data":{"image":{"url":"\\"http://atwoodmagazine.com/wp-content/uploads/2018/02/Blue-Jazz-TV-2018-1.jpg\\""}}}]}',
-          headers: {
-            'Accept' => '*/*',
-            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-            'Authorization' => 'Key 9561310a9cd84b16a1625f2acd2e0086',
-            'Content-Length' => '122',
-            'Host' => 'api.clarifai.com',
-            'User-Agent' => 'rest-client/2.1.0.rc1 (darwin18.7.0 x86_64) ruby/2.5.1p57'
-          }
+          body: '{"inputs":[{"data":{"image":{"url":"\\"http://atwoodmagazine.com/wp-content/uploads/2018/02/Blue-Jazz-TV-2018-1.jpg\\""}}}]}'
+
         )
         .to_return(status: 200, body: outcome, headers: {})
 
@@ -27,6 +20,10 @@ RSpec.describe 'POST api/analyses', type: :request do
     end
     it 'is expected to respond with a 200 message' do
       expect(response).to have_http_status 200
+    end
+
+    it 'it is expected to respond with a safe score' do
+      expect(JSON.parse(response.body)['results']['safe'].to_f).to eq 0.999055
     end
   end
 end
